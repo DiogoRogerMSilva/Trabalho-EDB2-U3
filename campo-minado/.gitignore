@@ -1,0 +1,7 @@
+benchmark_campo_minado
+*.exe
+*.out
+*.o
+.vscode/
+.idea/
+build/
