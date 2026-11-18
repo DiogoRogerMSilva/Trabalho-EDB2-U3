@@ -17,13 +17,19 @@ struct ResultadoSimulacao {
     int altura_maxima;
 };
 
-inline ResultadoSimulacao executar_simulacao_campo_minado(int largura_grid, int altura_grid, double probabilidade_mina, const string& modo) {
+inline ResultadoSimulacao executar_simulacao_campo_minado(
+    int largura_grid, 
+    int altura_grid, 
+    double probabilidade_mina, 
+    const string& modo,
+    unsigned int semente = 42
+) {
     int total_celulas = largura_grid * altura_grid;
     ConjuntoDisjuntoGradeInstrumentado ds(total_celulas, modo);
 
     // Gera o tabuleiro (0 = seguro, 1 = mina)
     vector<vector<int>> grid(altura_grid, vector<int>(largura_grid));
-    mt19937 gerador(42); // Semente fixa para reprodutibilidade
+    mt19937 gerador(semente);
     uniform_real_distribution<> distribuicao(0.0, 1.0);
 
     for (int r = 0; r < altura_grid; ++r) {
